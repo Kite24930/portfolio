@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Kiwi Maru';
+    src: url('/storage/fonts/Kiwi_Maru/KiwiMaru-Regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Kiwi Maru';
+    src: url('/storage/fonts/Kiwi_Maru/KiwiMaru-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Kiwi Maru';
+    src: url('/storage/fonts/Kiwi_Maru/KiwiMaru-Light.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Tsukimi Rounded';
+    src: url('/storage/fonts/Tsukimi_Rounded/TsukimiRounded-Bold.ttf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Tsukimi Rounded';
+    src: url('/storage/fonts/Tsukimi_Rounded/TsukimiRounded-Regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Tsukimi Rounded';
+    src: url('/storage/fonts/Tsukimi_Rounded/TsukimiRounded-Light.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Tsukimi Rounded';
+    src: url('/storage/fonts/Tsukimi_Rounded/TsukimiRounded-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Tsukimi Rounded';
+    src: url('/storage/fonts/Tsukimi_Rounded/TsukimiRounded-SemiBold.ttf');
+    font-weight: 600;
+}
+
+:root {
+    --primaly-color: #000F1F;
+    --theme-color: #CCFFFF;
+    --sub-color: #265973;
+}
+
+.bg-primary {
+    background-color: var(--primaly-color);
+}
+
+.text-primary {
+    color: var(--primaly-color);
+}
+
+.border-primary {
+    border-color: var(--primaly-color);
+}
+
+.bg-theme {
+    background-color: var(--theme-color);
+}
+
+.text-theme {
+    color: var(--theme-color);
+}
+
+.border-theme {
+    border-color: var(--theme-color);
+}
+
+.bg-sub {
+    background-color: var(--sub-color);
+}
+
+.text-sub {
+    color: var(--sub-color);
+}
+
+.border-sub {
+    border-color: var(--sub-color);
+}
+
+.kiwi-maru {
+    font-family: 'Kiwi Maru', system-ui;
+}
+
+.tsukimi-rounded {
+    font-family: 'Tsukimi Rounded', system-ui;
+}
+
+* {
+    font-family: 'Kiwi Maru', system-ui;
+    &:not(.exclusion) {
+        color: var(--theme-color);
+    }
+}
+
+#menu-btn {
+    span {
+        background-color: var(--theme-color);
+        height: 3px;
+        border-radius: 5px;
+        left: 25%;
+        position: absolute;
+        transition: all 0.5s;
+
+        &:nth-of-type(1) {
+            top: calc(35% - 1.5px);
+            width: 50%;
+        }
+
+        &:nth-of-type(2) {
+            top: calc(50% - 1.5px);
+            width: 35%;
+        }
+
+        &:nth-of-type(3) {
+            top: calc(68% - 1.5px);
+            width: 20%;
+        }
+    }
+
+    &.active {
+        span {
+            &:nth-of-type(1) {
+                top: 50%;
+                transform: rotate(-135deg);
+            }
+
+            &:nth-of-type(2) {
+                opacity: 0;
+            }
+
+            &:nth-of-type(3) {
+                top: 50%;
+                width: 50%;
+                transform: rotate(135deg);
+            }
+        }
+    }
+}
+
+#menu-box {
+    @media (max-width: 768px) {
+        right: -100%;
+
+        &.active {
+            right: 0;
+        }
+    }
+}
+
+.white-shadow {
+    box-shadow: 4px 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+.white-click-shadow {
+    box-shadow: 4px 4px 0 var(--theme-color);
+    transition: all 0.5s;
+    &:hover {
+        transform: translate(4px, 4px);
+        box-shadow: 0 0 0 var(--theme-color);
+    }
+}
+
+.skill-list {
+    height: 0;
+    &.active {
+        height: auto;
+    }
+}

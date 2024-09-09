@@ -9,7 +9,7 @@
                 <p class="text-lg">株式会社プロジェクトM 代表取締役</p>
                 <div class="pt-2 px-4 flex flex-col gap-1">
                     <div class="flex">
-                        <a href="https://mie-projectm.com/about#president" class="flex items-center gap-1 text-sm">
+                        <a href="https://mie-projectm.com/about" class="flex items-center gap-1 text-sm">
                             <img src="{{ asset('storage/data/link.svg') }}" alt="link" class="w-6">
                             <div>代表詳細ページ(経歴等)</div>
                         </a>

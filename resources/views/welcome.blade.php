@@ -144,26 +144,36 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('contact') }}" method="POST" class="p-4 flex flex-col gap-6 w-full max-w-2xl">
+        <form id="contact" action="{{ route('contact') }}" method="POST" class="p-4 flex flex-col gap-6 w-full max-w-2xl">
             @csrf
             <div class="flex flex-col max-w-sm">
                 <label for="name" class="text-sm">お名前</label>
-                <input id="name" name="name" type="text" class="rounded-lg bg-transparent border-theme" placeholder="お名前">
+                <input id="name" name="name" type="text" class="rounded-lg bg-transparent border-theme" placeholder="お名前" @if(old('name')) value="{{ old('name') }}" @endif>
             </div>
             <div class="flex flex-col max-w-sm">
                 <label for="email" class="text-sm">メールアドレス</label>
-                <input id="email" name="email" type="email" class="rounded-lg bg-transparent border-theme" placeholder="メールアドレス">
+                <input id="email" name="email" type="email" class="rounded-lg bg-transparent border-theme" placeholder="メールアドレス" @if(old('email')) value="{{ old('email') }}" @endif>
             </div>
             <div class="flex flex-col">
                 <label for="message" class="text-sm">お問い合わせ内容</label>
-                <textarea name="message" id="message" rows="10" class="rounded-lg bg-transparent border-theme"></textarea>
+                <textarea name="message" id="message" rows="10" class="rounded-lg bg-transparent border-theme">@if(old('message')){{ old('message') }}@endif</textarea>
             </div>
-            <script src="https://www.google.com/recaptcha/api.js?render={{ env('NOCAPTCHA_SITEKEY') }}" async defer></script>
-            {!! app('captcha')->display() !!}
+            {!! app('captcha')->display(['data-callback' => 'onSubmit']) !!}
             <div class="flex justify-center items-center">
-                <button type="submit" class="white-click-shadow bg-primary py-4 px-6 rounded-lg relative overflow-hidden">
+                <button class="white-click-shadow bg-primary py-4 px-6 rounded-lg relative overflow-hidden" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}" data-callback="onSubmit" data-action="submit">
                     <span class="text-2xl">送信</span>
                 </button>
+                <script>
+                    function onSubmit(e) {
+                        e.preventDefault();
+                        grecaptcha.ready(function() {
+                            grecaptcha.execute(document.querySelector('button').dataset.sitekey, {action: 'submit'}).then(function(token) {
+                                document.getElementById("g-recaptcha-response").value = token;
+                                document.getElementById("contact").submit();
+                            });
+                        });
+                    }
+                </script>
             </div>
         </form>
     </div>

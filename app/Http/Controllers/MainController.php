@@ -80,7 +80,7 @@ class MainController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return back()->withErrors($validator)->withInput()->withFragment('contact');
         }
 
 //        if ($location->iso_code !== 'JP') {
@@ -95,6 +95,6 @@ class MainController extends Controller
             $message->from('no-reply@laugh-cat.com', 'Kanta Torida');
             $message->bcc('contact@laugh-cat.com');
         });
-        return back()->with('message', 'お問い合わせを受け付けました。');
+        return back()->with('message', 'お問い合わせを受け付けました。')->withFragment('contact');
     }
 }

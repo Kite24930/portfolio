@@ -57,6 +57,7 @@
     @if($css)
         @vite(['resources/css/'.$css])
     @endif
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('NOCAPTCHA_SITEKEY') }}" async defer></script>
 </head>
 <body class="md:pt-28 pt-20">
 <canvas id="background" class="fixed top-0 bottom-0 left-0 right-0 w-full h-full bg-primary -z-50"></canvas>

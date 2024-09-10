@@ -53,6 +53,17 @@ class MainController extends Controller
             'email' => 'required|email|max:255',
             'message' => 'required|string',
             'g-recaptcha-response' => 'required|captcha',
+        ], [
+            'g-recaptcha-response.required' => 'reCAPTCHAをクリアしてください。',
+            'g-recaptcha-response.captcha' => 'reCAPTCHAをクリアしてください。',
+            'name.required' => '名前を入力してください。',
+            'name.string' => '名前は文字列で入力してください。',
+            'name.max' => '名前は255文字以内で入力してください。',
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => 'メールアドレスの形式で入力してください。',
+            'email.max' => 'メールアドレスは255文字以内で入力してください。',
+            'message.required' => 'お問い合わせ内容を入力してください。',
+            'message.string' => 'お問い合わせ内容は文字列で入力してください。',
         ]);
 
         Contact::create([

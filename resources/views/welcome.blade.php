@@ -135,6 +135,15 @@
                 <p>{{ session('message') }}</p>
             </div>
         @endif
+        @if($errors->any())
+            <div class="bg-red-500 text-white p-4 rounded-lg mt-4">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('contact') }}" method="POST" class="p-4 flex flex-col gap-6 w-full max-w-2xl">
             @csrf
             <div class="flex flex-col max-w-sm">

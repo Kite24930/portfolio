@@ -149,8 +149,8 @@
                 <label for="message" class="text-sm">お問い合わせ内容</label>
                 <textarea name="message" id="message" rows="10" class="rounded-lg bg-transparent border-theme"></textarea>
             </div>
-            {!! app('captcha')->display() !!}
             <script src="https://www.google.com/recaptcha/api.js?render={{ env('NOCAPTCHA_SITEKEY') }}" async defer></script>
+            {!! app('captcha')->display() !!}
             <div class="flex justify-center items-center">
                 <button type="submit" class="white-click-shadow bg-primary py-4 px-6 rounded-lg relative overflow-hidden">
                     <span class="text-2xl">送信</span>

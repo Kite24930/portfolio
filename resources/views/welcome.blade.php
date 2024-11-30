@@ -130,52 +130,55 @@
         <div>
             お仕事のご依頼からとりあえずちょっと聞いてみたいまでなんでもお気軽にお問い合わせください。
         </div>
-        @if(session('message'))
-            <div class="bg-primary text-white p-4 rounded-lg mt-4">
-                <p>{{ session('message') }}</p>
-            </div>
-        @endif
-        @if($errors->any())
-            <div class="bg-red-500 text-white p-4 rounded-lg mt-4">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <form id="contact" action="{{ route('contact') }}" method="POST" class="p-4 flex flex-col gap-6 w-full max-w-2xl">
-            @csrf
-            <div class="flex flex-col max-w-sm">
-                <label for="name" class="text-sm">お名前</label>
-                <input id="name" name="name" type="text" class="rounded-lg bg-transparent border-theme" placeholder="お名前" @if(old('name')) value="{{ old('name') }}" @endif>
-            </div>
-            <div class="flex flex-col max-w-sm">
-                <label for="email" class="text-sm">メールアドレス</label>
-                <input id="email" name="email" type="email" class="rounded-lg bg-transparent border-theme" placeholder="メールアドレス" @if(old('email')) value="{{ old('email') }}" @endif>
-            </div>
-            <div class="flex flex-col">
-                <label for="message" class="text-sm">お問い合わせ内容</label>
-                <textarea name="message" id="message" rows="10" class="rounded-lg bg-transparent border-theme">@if(old('message')){{ old('message') }}@endif</textarea>
-            </div>
-            {!! app('captcha')->display(['data-callback' => 'onSubmit']) !!}
-            <div class="flex justify-center items-center">
-                <button class="white-click-shadow bg-primary py-4 px-6 rounded-lg relative overflow-hidden" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}" data-callback="onSubmit" data-action="submit">
-                    <span class="text-2xl">送信</span>
-                </button>
-                <script>
-                    function onSubmit(e) {
-                        e.preventDefault();
-                        grecaptcha.ready(function() {
-                            grecaptcha.execute(document.querySelector('button').dataset.sitekey, {action: 'submit'}).then(function(token) {
-                                document.getElementById("g-recaptcha-response").value = token;
-                                document.getElementById("contact").submit();
-                            });
-                        });
-                    }
-                </script>
-            </div>
-        </form>
+        <div class="mt-10">
+            <a href="mailto:contact@laugh-cat.com"  class="white-click-shadow bg-primary py-4 px-6 rounded-lg relative overflow-hidden">メールにて問い合わせ</a>
+        </div>
+{{--        @if(session('message'))--}}
+{{--            <div class="bg-primary text-white p-4 rounded-lg mt-4">--}}
+{{--                <p>{{ session('message') }}</p>--}}
+{{--            </div>--}}
+{{--        @endif--}}
+{{--        @if($errors->any())--}}
+{{--            <div class="bg-red-500 text-white p-4 rounded-lg mt-4">--}}
+{{--                <ul>--}}
+{{--                    @foreach($errors->all() as $error)--}}
+{{--                        <li>{{ $error }}</li>--}}
+{{--                    @endforeach--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        @endif--}}
+{{--        <form id="contact" action="{{ route('contact') }}" method="POST" class="p-4 flex flex-col gap-6 w-full max-w-2xl">--}}
+{{--            @csrf--}}
+{{--            <div class="flex flex-col max-w-sm">--}}
+{{--                <label for="name" class="text-sm">お名前</label>--}}
+{{--                <input id="name" name="name" type="text" class="rounded-lg bg-transparent border-theme" placeholder="お名前" @if(old('name')) value="{{ old('name') }}" @endif>--}}
+{{--            </div>--}}
+{{--            <div class="flex flex-col max-w-sm">--}}
+{{--                <label for="email" class="text-sm">メールアドレス</label>--}}
+{{--                <input id="email" name="email" type="email" class="rounded-lg bg-transparent border-theme" placeholder="メールアドレス" @if(old('email')) value="{{ old('email') }}" @endif>--}}
+{{--            </div>--}}
+{{--            <div class="flex flex-col">--}}
+{{--                <label for="message" class="text-sm">お問い合わせ内容</label>--}}
+{{--                <textarea name="message" id="message" rows="10" class="rounded-lg bg-transparent border-theme">@if(old('message')){{ old('message') }}@endif</textarea>--}}
+{{--            </div>--}}
+{{--            {!! app('captcha')->display(['data-callback' => 'onSubmit']) !!}--}}
+{{--            <div class="flex justify-center items-center">--}}
+{{--                <button class="white-click-shadow bg-primary py-4 px-6 rounded-lg relative overflow-hidden" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}" data-callback="onSubmit" data-action="submit">--}}
+{{--                    <span class="text-2xl">送信</span>--}}
+{{--                </button>--}}
+{{--                <script>--}}
+{{--                    function onSubmit(e) {--}}
+{{--                        e.preventDefault();--}}
+{{--                        grecaptcha.ready(function() {--}}
+{{--                            grecaptcha.execute(document.querySelector('button').dataset.sitekey, {action: 'submit'}).then(function(token) {--}}
+{{--                                document.getElementById("g-recaptcha-response").value = token;--}}
+{{--                                document.getElementById("contact").submit();--}}
+{{--                            });--}}
+{{--                        });--}}
+{{--                    }--}}
+{{--                </script>--}}
+{{--            </div>--}}
+{{--        </form>--}}
     </div>
     @vite(['resources/js/index.js'])
 </x-template>
